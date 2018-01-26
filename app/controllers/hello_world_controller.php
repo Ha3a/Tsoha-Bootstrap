@@ -31,5 +31,9 @@ class HelloWorldController extends BaseController {
     public static function ruoka() {
         View::make('suunnitelmat/ruoka.html');
     }
+    
+    public static function annoksenmuokkaus() {
+        View::make('suunnitelmat/annoksenmuokkaus.html');
+    }
 
 }
