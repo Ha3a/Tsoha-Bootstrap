@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Muokkaa raaka-ainetta kanamuna</h1>
+
+  <form>
+
+    <div class="form-group">
+      <label>Nimi</label>
+      <input type="text" class="form-control" value="Kanamuna">
+    </div>
+    <div class="form-group">
+      <label>kcal/100g</label>
+      <input type="text" class="form-control" value="155">
+    </div>
+    <div class="form-group">
+      <label>Proteiini/100g</label>
+      <input type="text" class="form-control" value="13">
+    </div>
+    <div class="form-group">
+      <label>Hiilihydraattit/100g</label>
+      <input type="text" class="form-control" value="1.1">
+    </div>
+      <div class="form-group">
+      <label>Rasva/100g</label>
+      <input type="text" class="form-control" value="11">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+  </form>
+{% endblock %}

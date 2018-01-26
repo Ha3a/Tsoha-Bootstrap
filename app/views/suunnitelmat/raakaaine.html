@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Raaka-aineet</h1>
+
+  <p>
+    <a href="#" class="btn btn-success">Lisää peli</a>
+  </p>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>kcal/100g</th>
+        <th>Proteiini/100g</th>
+        <th>Hiilihydraattit/100g</th>
+        <th>Rasva/100g</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- Listataan pelit tähän -->
+      <tr>
+        <td><a href="#">Kanamuna</a></td>
+        <td>155</td>
+        <td>13</td>
+        <td>1.1</td>
+        <td>11</td>
+        <th><a class="btn btn-default btn-sm" href="#">Muokkaa</a></th>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}
