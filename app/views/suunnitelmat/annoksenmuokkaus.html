@@ -1,49 +1,61 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Ruuat</h1>
+<h1>Ruuat</h1>
 
-  <p>
+<p>
     <a href="#" class="btn btn-success">Muokkaa annosta: Paistettu kanamunu</a>
-  </p>
+</p>
 
-  <table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered">
     <thead>
-      <tr>
-        <th>Nimi</th>
-        <th>kcal/100g</th>
-        <th>Proteiini/100g</th>
-        <th>Hiilihydraattit/100g</th>
-        <th>Rasva/100g</th>
-        <th></th>
-      </tr>
+        <tr>
+            <th>Nimi</th>
+            <th>kcal/100g</th>
+            <th>Proteiini/100g</th>
+            <th>Hiilihydraattit/100g</th>
+            <th>Rasva/100g</th>
+            <th></th>
+        </tr>
     </thead>
 
     <tbody>
-      
+
     <h1>Raaka-aineet</h1>
-        
-      <tr>
+
+    <tr>
         <td><a href="#">Kananmuna</a></td>
         <td>155</td>
         <td>13</td>
         <td>1.1</td>
         <td>11</td>
         <th><a class="btn btn-default btn-sm" href="#">Poista</a></th>
-      </tr>
-    </tbody>
-    
-        <tbody>
-      
+    </tr>
+</tbody>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>kcal/100g</th>
+            <th>Proteiini/100g</th>
+            <th>Hiilihydraattit/100g</th>
+            <th>Rasva/100g</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
     <h1>Lisää raaka-aineet</h1>
-        
-      <tr>
+
+    <tr>
         <td><a href="#">Kananmuna</a></td>
         <td>155</td>
         <td>13</td>
         <td>1.1</td>
         <td>11</td>
-        <th><a class="btn btn-default btn-sm" href="#">Poista</a></th>
-      </tr>
+        <th><a class="btn btn-default btn-sm" href="#">Lisää</a></th>
+    </tr>
     </tbody>
-  </table>
+</table>
 {% endblock %}
