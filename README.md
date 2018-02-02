@@ -2,7 +2,7 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://harrihei.users.cs.helsinki.fi/tsoha)
+* [Linkki sovellukseeni](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/raakaaine)
 * [Linkki dokumentaatiooni](doc/dokumentaatio.pdf)
 
 ## Työn aihe
