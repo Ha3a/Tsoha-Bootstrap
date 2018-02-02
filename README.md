@@ -13,6 +13,10 @@ Elektroninen ravintokirja toteuttaa mahdollisuuden luoda annoksia, sekä seurata
 Ravintokirja mahdollistaa annosten luomisen raaka-aineiden perusteella ja lisäämällä eineksiä päivittäiseen ruokailuun.
 
 ## Linkkejä sovelluksen suunnittelu sivuihin
+Päivitetyt sivut
+* [Raaka-aineet](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/raakaaine)
+* [Raaka-aineen muokkaamissivu](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/raakaaine/1)
+
 
 
 * [Ruuat](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/ruoka)
