@@ -17,11 +17,9 @@ Päivitetyt sivut
 * [Raaka-aineet](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/raakaaine)
 * [Raaka-aineen muokkaamissivu](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/raakaaine/1)
 
-
+Vanhemmat mallit/To do
 
 * [Ruuat](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/ruoka)
 * [Ruuan muokkaussivu](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/ruoka/1)
 * [Annoksen luomis sivu](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/ruoka/luoannos)
-* [Raaka-aineet](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/raakaaine)
-* [Raaka-aineen oma sivu](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/raakaaine/1)
 * [Kirjautuminen](https://harrihei.users.cs.helsinki.fi/tsoha/login)
