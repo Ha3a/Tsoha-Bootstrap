@@ -20,14 +20,16 @@
 
     <tbody>
       <!-- Listataan pelit tähän -->
+      {% for raakaaine in raakaaineet %}
       <tr>
-        <td><a href="#">Kananmuna</a></td>
-        <td>155</td>
-        <td>13</td>
-        <td>1.1</td>
-        <td>11</td>
+        <td><a href="{{base_path}}/raakaaine/{{raakaaine.id}}">{{raakaaine.nimi}}</a></td>
+        <td>{{raakaaine.kcalper100}}</td>
+        <td>{{raakaaine.proteiiniper100}}</td>
+        <td>{{raakaaine.hiilihydraatitper100}}</td>
+        <td>{{raakaaine.rasvaper100}}</td>
         <th><a class="btn btn-default btn-sm" href="#">Muokkaa</a></th>
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 {% endblock %}

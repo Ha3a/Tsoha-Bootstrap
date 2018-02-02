@@ -16,9 +16,21 @@ $routes->get('/ravintokirja/ruoka', function() {
     HelloWorldController::ruoka();
 });
 
+
+
+
 $routes->get('/ravintokirja/raakaaine', function() {
-    HelloWorldController::raakaaine();
+    RaakaaineController::index();
 });
+
+$routes->post('/ravintokirja/raakaaine', function() {
+    RaakaaineController::store();
+});
+
+$routes->get('ravintokirja/lisaaraakaine', function() {
+    RaakaaineController::create();
+});
+
 
 $routes->get('/ravintokirja/raakaaine/1', function() {
     HelloWorldController::muokkaussivu();
@@ -31,5 +43,7 @@ $routes->get('/ravintokirja/ruoka/luoannos', function() {
 $routes->get('/ravintokirja/ruoka/1', function() {
     HelloWorldController::annoksenmuokkaus();
 });
+
+
 
 
