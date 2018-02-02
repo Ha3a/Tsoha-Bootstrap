@@ -46,7 +46,7 @@ class Raakaaine extends BaseModel {
         if ($row) {
             $raakaaine = new Raakaaine(array(
                 'id' => $row['id'],
-                'Nimi' => $row['nimi'],
+                'nimi' => $row['nimi'],
                 'kcalper100' => $row['kcalper100'],
                 'proteiiniper100' => $row['proteiiniper100'],
                 'hiilihydraatitper100' => $row['hiilihydraatitper100'],

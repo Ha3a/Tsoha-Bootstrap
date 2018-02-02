@@ -31,10 +31,17 @@ $routes->get('ravintokirja/lisaaraakaine', function() {
     RaakaaineController::create();
 });
 
-
-$routes->get('/ravintokirja/raakaaine/1', function() {
-    HelloWorldController::muokkaussivu();
+$routes->get('/ravintokirja/raakaaine/:id', function($id) {
+    RaakaaineController::show($id);
 });
+
+
+
+
+
+//$routes->get('/ravintokirja/raakaaine/1', function() {
+//    HelloWorldController::muokkaussivu();
+//});
 
 $routes->get('/ravintokirja/ruoka/luoannos', function() {
     HelloWorldController::luoannos();

@@ -3,7 +3,7 @@
   <h1>Raaka-aineet</h1>
 
   <p>
-    <a href="#" class="btn btn-success">Lisää raaka-aine</a>
+    <a href="#" class="btn btn-success">Lisää raaka-aine // Mahdollisesti siirretään sivun alalaidasta tähän</a>
   </p>
 
   <table class="table table-striped table-bordered">
@@ -19,10 +19,10 @@
     </thead>
 
     <tbody>
-      <!-- Listataan pelit tähän -->
+      
       {% for raakaaine in raakaaineet %}
       <tr>
-        <td><a href="{{base_path}}/raakaaine/{{raakaaine.id}}">{{raakaaine.nimi}}</a></td>
+        <td><a href="{{base_path}}/ravintokirja/raakaaine/{{raakaaine.id}}">{{raakaaine.nimi}}</a></td>
         <td>{{raakaaine.kcalper100}}</td>
         <td>{{raakaaine.proteiiniper100}}</td>
         <td>{{raakaaine.hiilihydraatitper100}}</td>

@@ -11,10 +11,10 @@ class HelloWorldController extends BaseController {
     public static function sandbox() {
         // Testaa koodiasi täällä
         
-//        $test = Raakaaine::find(1);
+        $test = Raakaaine::find(1);
         $raakaaineet = Raakaaine::all();
         
-//        Kint::dump($test);
+        Kint::dump($test);
         Kint::dump($raakaaineet);
         
 //        View::make('helloworld.html');

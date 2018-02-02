@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+<h1>Muokkaa raaka-ainetta {{raakaaineet[0].raakaaine.nimi}}</h1>
+
+
+<form>
+
+
+
+    <div class="form-group">
+        <label>Nimi</label>
+        <input type="text" class="form-control" value={{raakaaine.nimi}}>
+    </div>
+    <div class="form-group">
+        <label>kcal/100g</label>
+        <input type="text" class="form-control" value={{raakaaine.kcalper100}}>
+    </div>
+    <div class="form-group">
+        <label>Proteiini/100g</label>
+        <input type="text" class="form-control" value={{raakaaine.proteiiniper100}}>
+    </div>
+    <div class="form-group">
+        <label>Hiilihydraattit/100g</label>
+        <input type="text" class="form-control" value={{raakaaine.hiilihydraatitper100}}>
+    </div>
+    <div class="form-group">
+        <label>Rasva/100g</label>
+        <input type="text" class="form-control" value={{raakaaine.rasvaper100}}>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+
+
+
+</form>
+
+
+
+{% endblock %}
+
+
