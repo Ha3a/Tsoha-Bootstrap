@@ -12,6 +12,7 @@ class Raakaaine extends BaseModel {
 
     public function __construct($attribuutit) {
         parent::__construct($attribuutit);
+        $this->validators = array('validate_name');
     }
 
     public static function all() {
@@ -58,22 +59,83 @@ class Raakaaine extends BaseModel {
 
         return null;
     }
-    
-    
-    
-    
-    
-    public function save(){
-        
+
+    public function save() {
+
         $querry = DB::connection()->prepare('INSERT INTO Raakaaine (nimi, kcalper100, proteiiniper100, hiilihydraatitper100, rasvaper100) VALUES (:nimi, :kcalper100, :proteiiniper100, :hiilihydraatitper100, :rasvaper100) RETURNING id');
-        
+
         $querry->execute(array('nimi' => $this->nimi, 'kcalper100' => $this->kcalper100, 'proteiiniper100' => $this->proteiiniper100, 'hiilihydraatitper100' => $this->hiilihydraatitper100, 'rasvaper100' => $this->rasvaper100));
-        
+
         $row = $querry->fetch();
-        
+
         $this->id = $row['id'];
-        
     }
-    
+
+    public function validate_name() {
+        $errors = array();
+        if ($this->nimi == '' || $this->nimi == null) {
+            $errors[] = 'Nimi ei saa olla tyhjä!';
+        }
+        if (strlen($this->nimi) < 2) {
+            $errors[] = 'Nimen pituus on oltava vähintään kaksi merkkiä!';
+        }
+        if ($this->kcalper100 == '' || $this->kcalper100 == null) {
+            $errors[] = 'KcalPer100 ei saa olla tyhjä!';
+        }
+        if ($this->kcalper100 < 0) {
+            $errors[] = 'KcalPer100 ei saa olla negatiivinen!';
+        }
+        if (!is_numeric($this->kcalper100) && $this->hiilihydraatitper100 != null) {
+            $errors[] = 'KcalPer100 täytyy olla luku!';
+        }
+        if ($this->proteiiniper100 == '' || $this->proteiiniper100 == null) {
+            $errors[] = 'ProteiiniPer100 ei saa olla tyhjä!';
+        }
+        if ($this->proteiiniper100 < 0) {
+            $errors[] = 'ProteiiniPer100 ei saa olla negatiivinen!';
+        }
+        if (!is_numeric($this->proteiiniper100) && $this->proteiiniper100 != null) {
+            $errors[] = 'ProteiiniPer100 täytyy olla luku!';
+        }
+        if ($this->hiilihydraatitper100 == '' || $this->hiilihydraatitper100 == null) {
+            $errors[] = 'HiilihydraatitPer100 ei saa olla tyhjä!';
+        }
+        if ($this->hiilihydraatitper100 < 0) {
+            $errors[] = 'HiilihydraatitPer100 ei saa olla negatiivinen!';
+        }
+        if (!is_numeric($this->hiilihydraatitper100) && $this->hiilihydraatitper100 != null) {
+            $errors[] = 'HiilihydraatitPer100 täytyy olla luku!';
+        }
+        if ($this->rasvaper100 == '' || $this->rasvaper100 == null) {
+            $errors[] = 'RasvaPer100 ei saa olla tyhjä!';
+        }
+        if ($this->rasvaper100 < 0) {
+            $errors[] = 'RasvaPer100 ei saa olla negatiivinen!';
+        }
+        if (!is_numeric($this->rasvaper100) && $this->rasvaper100 != null) {
+            $errors[] = 'RasvaPer100 täytyy olla luku!';
+        }
+        
+        return $errors;
+    }
+
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Raakaaine SET nimi = :nimi, kcalper100 = :kcalper100, proteiiniper100 = :proteiiniper100, 
+                hiilihydraatitper100 = :hiilihydraatitper100, rasvaper100 = :rasvaper100 WHERE id = :id');
+
+        $query->execute(array(
+            'nimi' => $this->nimi,
+            'kcalper100' => $this->kcalper100,
+            'proteiiniper100' => $this->proteiiniper100,
+            'hiilihydraatitper100' => $this->hiilihydraatitper100,
+            'rasvaper100' => $this->rasvaper100,
+            'id' => $this->id,
+        ));
+    }
+
+    public function destroy($id) {
+        $query = DB::connection()->prepare('DELETE from Raakaaine WHERE id = :id');
+        $query->execute(array('id' => $id));
+    }
 
 }

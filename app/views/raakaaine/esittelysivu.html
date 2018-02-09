@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+<h1>{{raakaaineet.nimi}}</h1>
+
+{% if message %}
+<div class="alert">
+    <ul>
+        {% for msg in message %}
+        <li>{{msg}}</li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+
+
+{% endif %}
+
+
+<p>
+    <a href="https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/raakaaine" class="btn btn-success">Takaisin raaka-aineisiin</a>
+</p>
+
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>kcal/100g</th>
+            <th>Proteiini/100g</th>
+            <th>Hiilihydraattit/100g</th>
+            <th>Rasva/100g</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+
+        <tr>
+            <td><a href="{{base_path}}/ravintokirja/raakaaine/{{raakaaineet.id}}">{{raakaaineet.nimi}}</a></td>
+            <td>{{raakaaineet.kcalper100}}</td>
+            <td>{{raakaaineet.proteiiniper100}}</td>
+            <td>{{raakaaineet.hiilihydraatitper100}}</td>
+            <td>{{raakaaineet.rasvaper100}}</td>
+            <th><a class="btn btn-default btn-sm" href="{{base_path}}/ravintokirja/raakaaine/{{raakaaineet.id}}/edit">Muokkaa</a></th>
+        </tr>
+
+    </tbody>
+</table>
+
+<form method="post" action="{{base_path}}/ravintokirja/raakaaine/{{raakaaineet.id}}/destroy" style="display: inline-block;">
+    <button type="submit" class="btn btn-danger">Poista</button>
+</form>
+
+
+
+{% endblock %}
+
+

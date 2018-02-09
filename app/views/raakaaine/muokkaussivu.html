@@ -5,40 +5,47 @@
 
 <h1>Muokkaa raaka-ainetta: {{raakaaineet.nimi}}</h1>
 
+  <p>
+    <a href="https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/raakaaine" class="btn btn-success">Takaisin raaka-aineisiin</a>
+  </p>
 
 
-
-<form>
+<form method="post">
 
 
 
     <div class="form-group">
         <label>Nimi</label>
-        <input type="text" class="form-control" value={{raakaaineet.nimi}}>
+        <input type="text" name="nimi" class="form-control" value={{raakaaineet.nimi}}>
     </div>
     <div class="form-group">
         <label>kcal/100g</label>
-        <input type="text" class="form-control" value={{raakaaineet.kcalper100}}>
+        <input type="text" name="kcalper100" class="form-control" value={{raakaaineet.kcalper100}}>
     </div>
     <div class="form-group">
         <label>Proteiini/100g</label>
-        <input type="text" class="form-control" value={{raakaaineet.proteiiniper100}}>
+        <input type="text" name="proteiiniper100" class="form-control" value={{raakaaineet.proteiiniper100}}>
     </div>
     <div class="form-group">
         <label>Hiilihydraattit/100g</label>
-        <input type="text" class="form-control" value={{raakaaineet.hiilihydraatitper100}}>
+        <input type="text" name="hiilihydraatitper100" class="form-control" value={{raakaaineet.hiilihydraatitper100}}>
     </div>
     <div class="form-group">
         <label>Rasva/100g</label>
-        <input type="text" class="form-control" value={{raakaaineet.rasvaper100}}>
+        <input type="text" name="rasvaper100" class="form-control" value={{raakaaineet.rasvaper100}}>
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Tallenna</button>
     </div>
 
-
-
 </form>
+
+<form method="post" action="{{base_path}}/ravintokirja/raakaaine/{{raakaaineet.id}}/destroy" style="display: inline-block;">
+    <button type="submit" class="btn btn-danger">Poista</button>
+</form>
+
+
+
 
 
 

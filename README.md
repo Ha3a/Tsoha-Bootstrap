@@ -1,5 +1,12 @@
 ﻿# Tietokantasovelluksen esittelysivu
 
+
+*[Kirjautuminen sovellukseen](https://harrihei.users.cs.helsinki.fi/tsoha/login)
+Käyttjätunnus: admin
+Salasana:	1234
+
+
+
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/raakaaine)

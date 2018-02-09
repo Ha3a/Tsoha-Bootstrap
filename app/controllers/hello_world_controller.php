@@ -11,12 +11,16 @@ class HelloWorldController extends BaseController {
     public static function sandbox() {
         // Testaa koodiasi täällä
         
-        $test = Raakaaine::find(1);
-        $raakaaineet = Raakaaine::all();
-        
-        Kint::dump($test);
-        Kint::dump($raakaaineet);
-        
+       $testi = new Raakaaine(array(
+           'nimi' => '',
+           'kcalper100' => '',
+           'proteiiniper100' => '',
+           'hiilihydraatitper100' => '',
+           'rasvaper100' => ''           
+       ));
+       $errors = $testi->errors();
+       
+       Kint::dump($errors);
 //        View::make('helloworld.html');
     }
     

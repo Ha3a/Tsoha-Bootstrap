@@ -1,71 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Raaka-aineet</h1>
 
-  <p>
-    <a href="#" class="btn btn-success">Lisää raaka-aine // Mahdollisesti siirretään sivun alalaidasta tähän</a>
-  </p>
 
-  <table class="table table-striped table-bordered">
+{% if user_logged_in %}
+<h1>Kirjautuneena käyttäjällä: {{user_logged_in.nimi}}</h1>
+{% endif %}
+
+
+
+
+<h1>Raaka-aineet</h1>
+
+<p>
+    <a href="https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/lisaaraakaaine" class="btn btn-success">Lisää raaka-aine</a>
+</p>
+
+<table class="table table-striped table-bordered">
     <thead>
-      <tr>
-        <th>Nimi</th>
-        <th>kcal/100g</th>
-        <th>Proteiini/100g</th>
-        <th>Hiilihydraattit/100g</th>
-        <th>Rasva/100g</th>
-        <th></th>
-      </tr>
+        <tr>
+            <th>Nimi</th>
+            <th>kcal/100g</th>
+            <th>Proteiini/100g</th>
+            <th>Hiilihydraattit/100g</th>
+            <th>Rasva/100g</th>
+            <th></th>
+        </tr>
     </thead>
 
     <tbody>
-      
-      {% for raakaaine in raakaaineet %}
-      <tr>
-        <td><a href="{{base_path}}/ravintokirja/raakaaine/{{raakaaine.id}}">{{raakaaine.nimi}}</a></td>
-        <td>{{raakaaine.kcalper100}}</td>
-        <td>{{raakaaine.proteiiniper100}}</td>
-        <td>{{raakaaine.hiilihydraatitper100}}</td>
-        <td>{{raakaaine.rasvaper100}}</td>
-        <th><a class="btn btn-default btn-sm" href="{{base_path}}/ravintokirja/raakaaine/{{raakaaine.id}}">Muokkaa</a></th>
-      </tr>
-      {% endfor %}
+
+        {% for raakaaine in raakaaineet %}
+        <tr>
+            <td><a href="{{base_path}}/ravintokirja/raakaaine/{{raakaaine.id}}">{{raakaaine.nimi}}</a></td>
+            <td>{{raakaaine.kcalper100}}</td>
+            <td>{{raakaaine.proteiiniper100}}</td>
+            <td>{{raakaaine.hiilihydraatitper100}}</td>
+            <td>{{raakaaine.rasvaper100}}</td>
+            <th><a class="btn btn-default btn-sm" href="{{base_path}}/ravintokirja/raakaaine/{{raakaaine.id}}/edit">Muokkaa</a></th>
+        </tr>
+        {% endfor %}
     </tbody>
-  </table>
-  
-  
-  <h1>Lisää raaka-aine</h1>
+</table>
 
-<form method="post" action="raakaaine">
-    <div class="form-group">
-        <label>Nimi</label>
-        <input type="text" name="nimi" class="form-control">
-    </div>
 
-    <div class="form-group">
-        <label>Kcal/100g</label>
-        <input type="text" name="kcalper100" class="form-control">
-    </div>
 
-    <div class="form-group">
-        <label>Proteiini/100g</label>
-        <input type="text" name="proteiiniper100" class="form-control">
-    </div>
 
-    <div class="form-group">
-        <label>Hiilihydraatit/100g</label>
-        <input type="text" name="hiilihydraatitper100" class="form-control">
-    </div>
 
-    <div class="form-group">
-        <label>Rasva/100g</label>
-        <input type="text" name="rasvaper100" class="form-control">
-    </div>
-
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Lisää</button>
-    </div>
-</form>
-  
-  
 {% endblock %}

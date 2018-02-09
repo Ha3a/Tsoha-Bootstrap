@@ -38,3 +38,10 @@ hiilihydraatit float NOT NULL,
 rasva float NOT NULL
 
 );
+
+CREATE TABLE Kayttaja (
+    id SERIAL PRIMARY KEY,
+    nimi varchar(20) NOT NULL,
+    salasana varchar(20) NOT NULL,
+    admin boolean default false
+);
