@@ -23,6 +23,7 @@ Ravintokirja mahdollistaa annosten luomisen raaka-aineiden perusteella ja lisä�
 Päivitetyt sivut
 * [Raaka-aineet](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/raakaaine)
 * [Raaka-aineen muokkaamissivu](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/raakaaine/1)
+* [Lisää raaka-aine](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/lisaaraakaaine)
 
 Vanhemmat mallit/To do
 
