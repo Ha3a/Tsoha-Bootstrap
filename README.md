@@ -1,9 +1,9 @@
 ﻿# Tietokantasovelluksen esittelysivu
 
 
-*[Kirjautuminen sovellukseen](https://harrihei.users.cs.helsinki.fi/tsoha/login)
-Käyttjätunnus: admin
-Salasana:	1234
+[Kirjautuminen sovellukseen](https://harrihei.users.cs.helsinki.fi/tsoha/login)
+* [Käyttjätunnus: admin]
+* [Salasana:	1234]
 
 
 
