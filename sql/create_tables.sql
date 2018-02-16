@@ -36,7 +36,6 @@ kcal INTEGER NOT NULL,
 proteiini float NOT NULL,
 hiilihydraatit float NOT NULL,
 rasva float NOT NULL
-
 );
 
 CREATE TABLE Kayttaja (
@@ -44,4 +43,11 @@ CREATE TABLE Kayttaja (
     nimi varchar(20) NOT NULL,
     salasana varchar(20) NOT NULL,
     admin boolean default false
+);
+
+CREATE TABLE Annosraakaaine (
+    annos_id integer,
+    raakaaine_id integer,
+    FOREIGN KEY (annos_id) REFERENCES Annos(id),
+    FOREIGN KEY (raakaaine_id) REFERENCES RaakaAine(id)
 );

@@ -7,29 +7,30 @@
  */
 require 'app/models/raakaaine.php';
 require 'app/models/kayttaja.php';
+require 'app/models/annos.php';
 
-class RaakaaineController extends BaseController {
+class AnnosController extends BaseController {
 
     public static function index() {
 
-        $raakaaineet = Raakaaine::all();
+        $annos = Annos::all();
 
 
-        View::make('raakaaine/raakaaine.html', array('raakaaineet' => $raakaaineet));
+        View::make('annos/annos.html', array('annos' => $annos));
     }
 
     public static function lisayssivu() {
-        View::make('raakaaine/lisaaraakaaine.html');
+        View::make('annos/lisaaannos.html');
     }
 
     public static function show($id) {
 
-        $raakaaineet = Raakaaine::find($id);
+        $annos = Annos::find($id);
 
-        Kint::dump($raakaaineet);
+        Kint::dump($annos);
 
 
-        View::make('raakaaine/esittelysivu.html', array('raakaaineet' => $raakaaineet));
+        View::make('annos/esittelysivu.html', array('annos' => $annos));
     }
 
     public static function store() {
@@ -44,24 +45,24 @@ class RaakaaineController extends BaseController {
             'rasvaper100' => $params['rasvaper100']
         );
 
-        $raakaaine = new Raakaaine($attributes);
-        $errors = $raakaaine->errors();
+        $annos = new Raakaaine($attributes);
+        $errors = $annos->errors();
 
         if (count($errors) == 0) {
 
-            $raakaaine->save();
-            Redirect::to('/ravintokirja/raakaaine/' . $raakaaine->id, array('message' => 'Raakaaine lisätty kirjastoon!'));
+            $annos->save();
+            Redirect::to('/ravintokirja/annos/' . $annos->id, array('message' => 'Annos lisätty kirjastoon!'));
         } else {
 
-            View::make('raakaaine/lisaaraakaaine.html', array('errors' => $errors, 'attributes' => $attributes));
+            View::make('annos/lisaaannos.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
 
     public static function edit($id) {
         self::check_logged_in();
 
-        $raakaaine = Raakaaine::find($id);
-        View::make('raakaaine/muokkaussivu.html', array('raakaaineet' => $raakaaine));
+        $annos = Annos::find($id);
+        View::make('annos/muokkaussivu.html', array('annos' => $annos));
     }
 
     public static function update($id) {
@@ -78,27 +79,27 @@ class RaakaaineController extends BaseController {
             'rasvaper100' => $params['rasvaper100']
         );
 
-        $raakaaine = new Raakaaine($attributes);
-        $errors = $raakaaine->errors();
+        $annos = new Raakaaine($attributes);
+        $errors = $annos->errors();
 
         if (count($errors) == 0) {
 
-            $raakaaine->update();
-            Redirect::to('/ravintokirja/raakaaine/' . $raakaaine->id, array('message' => 'Raakaaine muokattu!'));
+            $annos->update();
+            Redirect::to('/ravintokirja/annos/' . $annos->id, array('message' => 'Annosta muokattu!'));
         } else {
-            $raakaaineet = Raakaaine::all();
-            View::make('raakaaine/raakaaine.html', array('errors' => $errors, 'attributes' => $attributes, 'raakaaineet' => $raakaaineet));
+            $annokset = Raakaaine::all();
+            View::make('annos/annos.html', array('errors' => $errors, 'attributes' => $attributes, 'raakaaineet' => $annokset));
         }
     }
 
     public static function destroy($id) {
         self::check_logged_in();
 
-        $raakaaine = new Raakaaine(array('id' => $id));
+        $annos = new Raakaaine(array('id' => $id));
 
-        $raakaaine->destroy($id);
+        $annos->destroy($id);
 
-        Redirect::to('/ravintokirja/raakaaine', array('message' => 'Raakaaine poistettu!'));
+        Redirect::to('/ravintokirja/annos', array('message' => 'Annos poistettu!'));
     }
 
 }

@@ -51,7 +51,37 @@ $routes->post('/ravintokirja/raakaaine/:id/destroy', function($id) {
     RaakaaineController::destroy($id);
 });
 
+$routes->get('/ravintokirja/annos', function() {
+    AnnosController::index();
+});
 
+$routes->post('/ravintokirja/annos', function() {
+    AnnosController::store();
+});
+
+$routes->get('/ravintokirja/lisaaannos', function() {
+    AnnosController::lisayssivu();
+});
+
+$routes->post('/ravintokirja/lisaaannos', function() {
+    AnnosController::store();
+});
+
+$routes->get('/ravintokirja/annos/:id', function($id) {
+    AnnosController::show($id);
+});
+
+$routes->get('/ravintokirja/annos/:id/edit', function($id) {
+    AnnosController::edit($id);
+});
+
+$routes->post('/ravintokirja/annos/:id/edit', function($id) {
+    AnnosController::update($id);
+});
+
+$routes->post('/ravintokirja/annos/:id/destroy', function($id) {
+    AnnosController::destroy($id);
+});
 
 
 
@@ -61,6 +91,11 @@ $routes->get('/login', function() {
 $routes->post('/login', function() {
     UserController::handle_login();
 });
+
+$routes->post('/logout', function() {
+    UserController::logout();
+});
+
 
 
 

@@ -28,4 +28,9 @@ class UserController extends BaseController {
         }
     }
 
+    public static function logout() {
+        $_SESSION['user'] = null;
+        Redirect::to('/ravintokirja/raakaaine', array('message' => 'Olet kirjautunut ulos!'));
+    }
+
 }

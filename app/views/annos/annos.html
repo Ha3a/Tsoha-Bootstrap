@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+{% if user_logged_in %}
+<h1>Kirjautuneena käyttäjällä: {{user_logged_in.nimi}}</h1>
+{% endif %}
+
+
+
+
+<h1>Annokset</h1>
+
+<p>
+    <a href="https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/lisaaannos" class="btn btn-success">Lisää annos</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>kcal/100g</th>
+            <th>Proteiini/100g</th>
+            <th>Hiilihydraattit/100g</th>
+            <th>Rasva/100g</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {% for annos in annos %}
+        <tr>
+            <td><a href="{{base_path}}/ravintokirja/raakaaine/{{annos.id}}">{{annos.nimi}}</a></td>
+            <td>{{annos.kcalper100}}</td>
+            <td>{{annos.proteiiniper100}}</td>
+            <td>{{annos.hiilihydraatitper100}}</td>
+            <td>{{annos.rasvaper100}}</td>
+            <th><a class="btn btn-default btn-sm" href="{{base_path}}/ravintokirja/annos/{{annos.id}}/edit">Muokkaa</a></th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+
+
+{% endblock %}
