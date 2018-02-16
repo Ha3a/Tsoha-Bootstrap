@@ -24,10 +24,11 @@ Päivitetyt sivut
 * [Raaka-aineet](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/raakaaine)
 * [Raaka-aineen muokkaamissivu](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/raakaaine/1)
 * [Lisää raaka-aine](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/lisaaraakaaine)
+* [Ruuat](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/annos)
 
 Vanhemmat mallit/To do
 
-* [Ruuat](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/ruoka)
-* [Ruuan muokkaussivu](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/ruoka/1)
+
+* [Ruuan muokkaussivu](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/annos/1)
 * [Annoksen luomis sivu](https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/ruoka/luoannos)
 * [Kirjautuminen](https://harrihei.users.cs.helsinki.fi/tsoha/login)
