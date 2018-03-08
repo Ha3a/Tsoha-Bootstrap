@@ -8,15 +8,33 @@
 require 'app/models/raakaaine.php';
 require 'app/models/kayttaja.php';
 require 'app/models/annos.php';
+require 'app/models/annosraakaaine.php';
 
 class AnnosController extends BaseController {
 
     public static function index() {
 
-        $annos = Annos::all();
+        $annokset = Annos::all();
 
+        $tiedoilla = array();
+        
+        $index = 0;
+        
+        foreach ($annokset as $annos) {
+            
+            
+            
+            $tiedoilla[$index] = Annosraakaaine::findRavinto($annos->id);
+            
+            $index++;
+            
+        }
+        
+//        $tiedoilla = Annosraakaaine::findRavinto(1);
 
-        View::make('annos/annos.html', array('annos' => $annos));
+        Kint::dump($tiedoilla);
+        
+        View::make('annos/annos.html', array('annos' => $annokset, 'tiedot' => $tiedoilla));
     }
 
     public static function lisayssivu() {
@@ -28,9 +46,13 @@ class AnnosController extends BaseController {
         $annos = Annos::find($id);
 
         Kint::dump($annos);
+        
+        
+        $annosraakaaineet = Annosraakaaine::find($id);
 
+         Kint::dump($annosraakaaineet);
 
-        View::make('annos/esittelysivu.html', array('annos' => $annos));
+        View::make('annos/esittelysivu.html', array('annos' => $annos, 'raakaaineet' => $annosraakaaineet));
     }
 
     public static function store() {
@@ -38,14 +60,10 @@ class AnnosController extends BaseController {
         $params = $_POST;
 
         $attributes = array(
-            'nimi' => $params['nimi'],
-            'kcalper100' => $params['kcalper100'],
-            'proteiiniper100' => $params['proteiiniper100'],
-            'hiilihydraatitper100' => $params['hiilihydraatitper100'],
-            'rasvaper100' => $params['rasvaper100']
+            'nimi' => $params['nimi']
         );
 
-        $annos = new Raakaaine($attributes);
+        $annos = new Annos($attributes);
         $errors = $annos->errors();
 
         if (count($errors) == 0) {
@@ -61,8 +79,12 @@ class AnnosController extends BaseController {
     public static function edit($id) {
         self::check_logged_in();
 
+        $raakaaineet = Raakaaine::all();
+
+        Kint::dump($raakaaineet);
+
         $annos = Annos::find($id);
-        View::make('annos/muokkaussivu.html', array('annos' => $annos));
+        View::make('annos/muokkaussivu.html', array('annos' => $annos, 'raakaaineet' => $raakaaineet));
     }
 
     public static function update($id) {
@@ -72,14 +94,10 @@ class AnnosController extends BaseController {
 
         $attributes = array(
             'id' => $id,
-            'nimi' => $params['nimi'],
-            'kcalper100' => $params['kcalper100'],
-            'proteiiniper100' => $params['proteiiniper100'],
-            'hiilihydraatitper100' => $params['hiilihydraatitper100'],
-            'rasvaper100' => $params['rasvaper100']
+            'nimi' => $params['nimi']
         );
 
-        $annos = new Raakaaine($attributes);
+        $annos = new Annos($attributes);
         $errors = $annos->errors();
 
         if (count($errors) == 0) {
@@ -95,11 +113,42 @@ class AnnosController extends BaseController {
     public static function destroy($id) {
         self::check_logged_in();
 
-        $annos = new Raakaaine(array('id' => $id));
+        $annos = new Annos(array('id' => $id));
 
         $annos->destroy($id);
 
         Redirect::to('/ravintokirja/annos', array('message' => 'Annos poistettu!'));
+    }
+
+    public static function lisaaAnnokseen($aid, $rid) {
+        self::check_logged_in();
+
+        $raakaaineet = Raakaaine::all();
+        $annos = Annos::find($aid);
+        $raakaaine = Raakaaine::find($rid);
+
+        $params = $_POST;
+
+
+
+
+        $attributes = array(
+            'annos_id' => $aid,
+            'raakaaine_id' => $rid,
+            'maara' => $params['maara']
+        );
+
+
+        $annosraakaaine = new Annosraakaaine($attributes);
+
+        $annosraakaaine->save();
+
+//        Kint::dump($annosraakaaine);
+
+
+
+
+        Redirect::to('/ravintokirja/annos/' . $annos->id, array('message' => 'Lisätty!'));
     }
 
 }

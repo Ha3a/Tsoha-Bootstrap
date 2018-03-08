@@ -85,6 +85,16 @@ $routes->post('/ravintokirja/annos/:id/destroy', function($id) {
 
 
 
+
+$routes->post('/ravintokirja/annos/:aid/lisaaraakaaine/:rid', function($aid, $rid) {
+    AnnosController::lisaaAnnokseen($aid, $rid);
+});
+
+
+
+
+
+
 $routes->get('/login', function() {
     UserController::login();
 });

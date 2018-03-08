@@ -8,29 +8,16 @@ hiilihydraatitPer100 float NOT NULL,
 rasvaPer100 float NOT NULL
 );
 
-CREATE TABLE Eines(
-id SERIAL PRIMARY KEY,
-nimi varchar(54) NOT NULL,
-kcal INTEGER NOT NULL,
-proteiini float NOT NULL,
-hiilihydraatit float NOT NULL,
-rasva float NOT NULL
-);
+
 
 CREATE TABLE Annos(
 id SERIAL PRIMARY KEY,
-raakaaine_id INTEGER REFERENCES Raakaaine(id),
-nimi varchar(55) NOT NULL,
-kcalPer100 INTEGER NOT NULL,
-proteiiniPer100 float NOT NULL,
-hiilihydraatitPer100 float NOT NULL,
-rasvaPer100 float NOT NULL
+nimi varchar(55) NOT NULL
 );
 
 CREATE TABLE Paivanravinto(
 id SERIAL PRIMARY KEY,
 annos_id INTEGER REFERENCES Annos(id),
-eines_id INTEGER REFERENCES Eines(id),
 nimi varchar(56) NOT NULL,
 kcal INTEGER NOT NULL,
 proteiini float NOT NULL,
@@ -48,6 +35,7 @@ CREATE TABLE Kayttaja (
 CREATE TABLE Annosraakaaine (
     annos_id integer,
     raakaaine_id integer,
+    maara integer,
     FOREIGN KEY (annos_id) REFERENCES Annos(id),
     FOREIGN KEY (raakaaine_id) REFERENCES RaakaAine(id)
 );

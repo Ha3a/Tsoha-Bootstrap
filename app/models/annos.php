@@ -8,7 +8,7 @@
 
 class Annos extends BaseModel {
 
-    public $id, $nimi, $kcalper100, $proteiiniper100, $hiilihydraatitper100, $rasvaper100;
+    public $id, $nimi;
 
     public function __construct($attribuutit) {
         parent::__construct($attribuutit);
@@ -28,14 +28,14 @@ class Annos extends BaseModel {
 
             $annos[] = new Annos(array(
                 'id' => $row['id'],
-                'nimi' => $row['nimi'],
-                'kcalper100' => $row['kcalper100'],
-                'proteiiniper100' => $row['proteiiniper100'],
-                'hiilihydraatitper100' => $row['hiilihydraatitper100'],
-                'rasvaper100' => $row['rasvaper100']
+                'nimi' => $row['nimi']
             ));
         }
         return $annos;
+    }
+    
+    public function getID(){
+        return $this->id;
     }
 
     public static function find($id) {
@@ -47,11 +47,7 @@ class Annos extends BaseModel {
         if ($row) {
             $annos = new Annos(array(
                 'id' => $row['id'],
-                'nimi' => $row['nimi'],
-                'kcalper100' => $row['kcalper100'],
-                'proteiiniper100' => $row['proteiiniper100'],
-                'hiilihydraatitper100' => $row['hiilihydraatitper100'],
-                'rasvaper100' => $row['rasvaper100']
+                'nimi' => $row['nimi']
             ));
 
             return $annos;
@@ -62,9 +58,9 @@ class Annos extends BaseModel {
 
     public function save() {
 
-        $querry = DB::connection()->prepare('INSERT INTO Annos (nimi, kcalper100, proteiiniper100, hiilihydraatitper100, rasvaper100) VALUES (:nimi, :kcalper100, :proteiiniper100, :hiilihydraatitper100, :rasvaper100) RETURNING id');
+        $querry = DB::connection()->prepare('INSERT INTO Annos (nimi) VALUES (:nimi) RETURNING id');
 
-        $querry->execute(array('nimi' => $this->nimi, 'kcalper100' => $this->kcalper100, 'proteiiniper100' => $this->proteiiniper100, 'hiilihydraatitper100' => $this->hiilihydraatitper100, 'rasvaper100' => $this->rasvaper100));
+        $querry->execute(array('nimi' => $this->nimi));
 
         $row = $querry->fetch();
 
@@ -79,59 +75,21 @@ class Annos extends BaseModel {
         if (strlen($this->nimi) < 2) {
             $errors[] = 'Nimen pituus on oltava vähintään kaksi merkkiä!';
         }
-        if ($this->kcalper100 == '' || $this->kcalper100 == null) {
-            $errors[] = 'KcalPer100 ei saa olla tyhjä!';
-        }
-        if ($this->kcalper100 < 0) {
-            $errors[] = 'KcalPer100 ei saa olla negatiivinen!';
-        }
-        if (!is_numeric($this->kcalper100) && $this->hiilihydraatitper100 != null) {
-            $errors[] = 'KcalPer100 täytyy olla luku!';
-        }
-        if ($this->proteiiniper100 == '' || $this->proteiiniper100 == null) {
-            $errors[] = 'ProteiiniPer100 ei saa olla tyhjä!';
-        }
-        if ($this->proteiiniper100 < 0) {
-            $errors[] = 'ProteiiniPer100 ei saa olla negatiivinen!';
-        }
-        if (!is_numeric($this->proteiiniper100) && $this->proteiiniper100 != null) {
-            $errors[] = 'ProteiiniPer100 täytyy olla luku!';
-        }
-        if ($this->hiilihydraatitper100 == '' || $this->hiilihydraatitper100 == null) {
-            $errors[] = 'HiilihydraatitPer100 ei saa olla tyhjä!';
-        }
-        if ($this->hiilihydraatitper100 < 0) {
-            $errors[] = 'HiilihydraatitPer100 ei saa olla negatiivinen!';
-        }
-        if (!is_numeric($this->hiilihydraatitper100) && $this->hiilihydraatitper100 != null) {
-            $errors[] = 'HiilihydraatitPer100 täytyy olla luku!';
-        }
-        if ($this->rasvaper100 == '' || $this->rasvaper100 == null) {
-            $errors[] = 'RasvaPer100 ei saa olla tyhjä!';
-        }
-        if ($this->rasvaper100 < 0) {
-            $errors[] = 'RasvaPer100 ei saa olla negatiivinen!';
-        }
-        if (!is_numeric($this->rasvaper100) && $this->rasvaper100 != null) {
-            $errors[] = 'RasvaPer100 täytyy olla luku!';
-        }
-        
+
+
         return $errors;
     }
 
     public function update() {
-        $query = DB::connection()->prepare('UPDATE Annos SET nimi = :nimi, kcalper100 = :kcalper100, proteiiniper100 = :proteiiniper100, 
-                hiilihydraatitper100 = :hiilihydraatitper100, rasvaper100 = :rasvaper100 WHERE id = :id');
+        $query = DB::connection()->prepare('UPDATE Annos SET nimi = :nimi WHERE id = :id');
 
         $query->execute(array(
             'nimi' => $this->nimi,
-            'kcalper100' => $this->kcalper100,
-            'proteiiniper100' => $this->proteiiniper100,
-            'hiilihydraatitper100' => $this->hiilihydraatitper100,
-            'rasvaper100' => $this->rasvaper100,
             'id' => $this->id,
         ));
     }
+
+
 
     public function destroy($id) {
         $query = DB::connection()->prepare('DELETE from Annos WHERE id = :id');

@@ -5,9 +5,9 @@
 
 <h1>Muokkaa annosta: {{annos.nimi}}</h1>
 
-  <p>
+<p>
     <a href="https://harrihei.users.cs.helsinki.fi/tsoha/ravintokirja/annos" class="btn btn-success">Takaisin annoksiin</a>
-  </p>
+</p>
 
 
 <form method="post">
@@ -18,27 +18,64 @@
         <label>Nimi</label>
         <input type="text" name="nimi" class="form-control" value={{annos.nimi}}>
     </div>
-    <div class="form-group">
-        <label>kcal/100g</label>
-        <input type="text" name="kcalper100" class="form-control" value={{annos.kcalper100}}>
-    </div>
-    <div class="form-group">
-        <label>Proteiini/100g</label>
-        <input type="text" name="proteiiniper100" class="form-control" value={{annos.proteiiniper100}}>
-    </div>
-    <div class="form-group">
-        <label>Hiilihydraattit/100g</label>
-        <input type="text" name="hiilihydraatitper100" class="form-control" value={{annos.hiilihydraatitper100}}>
-    </div>
-    <div class="form-group">
-        <label>Rasva/100g</label>
-        <input type="text" name="rasvaper100" class="form-control" value={{annos.rasvaper100}}>
-    </div>
+
+
+
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Tallenna</button>
     </div>
 
 </form>
+
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>kcal/100g</th>
+            <th>Proteiini/100g</th>
+            <th>Hiilihydraattit/100g</th>
+            <th>Rasva/100g</th>
+            <th>Määrä grammoissa</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {% for raakaaine in raakaaineet %}
+
+        <tr>
+             <form method="post" action="{{base_path}}/ravintokirja/annos/{{annos.id}}/lisaaraakaaine/{{raakaaine.id}}" style="display: inline-block;">
+            <td><a href="{{base_path}}/ravintokirja/raakaaine/{{raakaaine.id}}">{{raakaaine.nimi}}</a></td>
+            <td>{{raakaaine.kcalper100}}</td>
+            <td>{{raakaaine.proteiiniper100}}</td>
+            <td>{{raakaaine.hiilihydraatitper100}}</td>
+            <td>{{raakaaine.rasvaper100}}</td>
+            <td>
+
+                <input type="text" name="maara" class="form-control" value={{annos.nimi}}>
+
+            </td>
+            <th>
+
+
+               
+                    <button type="submit" class="btn btn-primary">Lisää annokseen</button>
+                </form>
+
+
+            </th>
+        </tr>
+        
+        {% endfor %}
+        
+
+    </tbody>
+</table>
+
+
+
 
 <form method="post" action="{{base_path}}/ravintokirja/annos/{{annos.id}}/destroy" style="display: inline-block;">
     <button type="submit" class="btn btn-danger">Poista</button>

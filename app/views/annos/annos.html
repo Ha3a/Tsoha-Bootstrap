@@ -19,24 +19,31 @@
     <thead>
         <tr>
             <th>Nimi</th>
-            <th>kcal/100g</th>
-            <th>Proteiini/100g</th>
-            <th>Hiilihydraattit/100g</th>
-            <th>Rasva/100g</th>
+            <th>Kcal</th>
+            <th>Proteiini</th>
+            <th>Hiilihydraattit</th>
+            <th>Rasva</th>
             <th></th>
         </tr>
     </thead>
 
     <tbody>
 
-        {% for annos in annos %}
+        {% for annos in tiedot %}
         <tr>
-            <td><a href="{{base_path}}/ravintokirja/raakaaine/{{annos.id}}">{{annos.nimi}}</a></td>
-            <td>{{annos.kcalper100}}</td>
-            <td>{{annos.proteiiniper100}}</td>
-            <td>{{annos.hiilihydraatitper100}}</td>
-            <td>{{annos.rasvaper100}}</td>
+            <td><a href="{{base_path}}/ravintokirja/annos/{{annos.id}}">{{annos.nimi}}</a></td>
+
+            
+            <td>{{annos.kcal}}</td>
+            <td>{{annos.proteiini}}g</td>
+            <td>{{annos.hiilihydraatit}}g</td>
+            <td>{{annos.rasva}}g</td>
+
+            
+
+
             <th><a class="btn btn-default btn-sm" href="{{base_path}}/ravintokirja/annos/{{annos.id}}/edit">Muokkaa</a></th>
+
         </tr>
         {% endfor %}
     </tbody>
