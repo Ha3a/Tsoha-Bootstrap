@@ -17,23 +17,22 @@ class AnnosController extends BaseController {
         $annokset = Annos::all();
 
         $tiedoilla = array();
-        
+
         $index = 0;
-        
+
         foreach ($annokset as $annos) {
-            
-            
-            
+
+
+
             $tiedoilla[$index] = Annosraakaaine::findRavinto($annos->id);
-            
+
             $index++;
-            
         }
-        
+
 //        $tiedoilla = Annosraakaaine::findRavinto(1);
 
         Kint::dump($tiedoilla);
-        
+
         View::make('annos/annos.html', array('annos' => $annokset, 'tiedot' => $tiedoilla));
     }
 
@@ -46,11 +45,11 @@ class AnnosController extends BaseController {
         $annos = Annos::find($id);
 
         Kint::dump($annos);
-        
-        
+
+
         $annosraakaaineet = Annosraakaaine::find($id);
 
-         Kint::dump($annosraakaaineet);
+        Kint::dump($annosraakaaineet);
 
         View::make('annos/esittelysivu.html', array('annos' => $annos, 'raakaaineet' => $annosraakaaineet));
     }
@@ -80,11 +79,16 @@ class AnnosController extends BaseController {
         self::check_logged_in();
 
         $raakaaineet = Raakaaine::all();
-
-        Kint::dump($raakaaineet);
-
         $annos = Annos::find($id);
-        View::make('annos/muokkaussivu.html', array('annos' => $annos, 'raakaaineet' => $raakaaineet));
+
+
+        $annosraakaaineet = Annosraakaaine::find($id);
+
+        Kint::dump($annosraakaaineet);
+
+
+
+        View::make('annos/muokkaussivu.html', array('annos' => $annos, 'raakaaineet' => $raakaaineet, 'annosraakaaineet' => $annosraakaaineet));
     }
 
     public static function update($id) {
@@ -140,15 +144,46 @@ class AnnosController extends BaseController {
 
 
         $annosraakaaine = new Annosraakaaine($attributes);
-
-        $annosraakaaine->save();
-
-//        Kint::dump($annosraakaaine);
+        $errors = $annosraakaaine->errors();
 
 
+        if (count($errors) == 0) {
+            $annosraakaaine->save();
+            Redirect::to('/ravintokirja/annos/' . $annos->id, array('message' => 'Lisätty!'));
+        } else {
+            Redirect::to('/ravintokirja/annos', array('message' => 'Toimii!'));
+        }
+    }
 
+    public static function updateSisalto($aid, $rid) {
+        self::check_logged_in();
 
-        Redirect::to('/ravintokirja/annos/' . $annos->id, array('message' => 'Lisätty!'));
+        $params = $_POST;
+
+        $attributes = array(
+            'annos_id' => $aid,
+            'raakaaine_id' => $rid,
+            'maara' => $params['maara']
+        );
+
+        $annosraakaaine = new Annosraakaaine($attributes);
+        $errors = $annosraakaaine->errors();
+        if (count($errors) == 0) {
+            $annosraakaaine->update();
+            Redirect::to('/ravintokirja/annos/' . $aid, array('message' => 'Annosta muokattu!'));
+        } else {
+            Redirect::to('/ravintokirja/annos', array('message' => 'Toimii!'));
+        }
+    }
+
+    public static function destroyRaakaaine($aid, $rid) {
+        self::check_logged_in();
+
+        $annosraakaaine = new Annosraakaaine(array('annos_id' => $aid, 'raakaaine_id' => $rid));
+
+        $annosraakaaine->destroy($aid, $rid);
+
+        Redirect::to('/ravintokirja/annos/' . $aid, array('message' => 'Raaka-aine poistettu annoksesta!'));
     }
 
 }

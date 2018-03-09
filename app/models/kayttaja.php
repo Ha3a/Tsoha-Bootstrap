@@ -42,17 +42,21 @@ Class Kayttaja extends BaseModel {
 
         if ($row) {
             $user = new Kayttaja(array(
-                
-                
                 'id' => $row['id'],
                 'nimi' => $row['nimi'],
                 'admin' => $row['admin']
-                    
-                    
             ));
             return $user;
         }
         return null;
+    }
+
+    public function save() {
+        
+        
+        
+        $query = DB::connection()->prepare('INSERT INTO Kayttaja (nimi, salasana, admin) VALUES (:nimi, :salasana, false) RETURNING id');
+        $query->execute(array('nimi' => $this->nimi, 'salasana' => $this->salasana));
     }
 
 }

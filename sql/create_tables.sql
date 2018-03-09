@@ -15,15 +15,6 @@ id SERIAL PRIMARY KEY,
 nimi varchar(55) NOT NULL
 );
 
-CREATE TABLE Paivanravinto(
-id SERIAL PRIMARY KEY,
-annos_id INTEGER REFERENCES Annos(id),
-nimi varchar(56) NOT NULL,
-kcal INTEGER NOT NULL,
-proteiini float NOT NULL,
-hiilihydraatit float NOT NULL,
-rasva float NOT NULL
-);
 
 CREATE TABLE Kayttaja (
     id SERIAL PRIMARY KEY,
@@ -38,4 +29,12 @@ CREATE TABLE Annosraakaaine (
     maara integer,
     FOREIGN KEY (annos_id) REFERENCES Annos(id),
     FOREIGN KEY (raakaaine_id) REFERENCES RaakaAine(id)
+);
+
+CREATE TABLE Ruokailut (
+    id SERIAL PRIMARY KEY,
+    annos_id integer,
+    kayttaja_id integer,
+    FOREIGN KEY (annos_id) REFERENCES Annos(id),
+    FOREIGN KEY (kayttaja_id) REFERENCES Kayttaja(id)
 );

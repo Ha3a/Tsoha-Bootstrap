@@ -12,6 +12,7 @@ class Annosraakaaine extends BaseModel {
 
     public function __construct($attribuutit) {
         parent::__construct($attribuutit);
+        $this->validators = array('validate_maara');
     }
 
     public function save() {
@@ -23,9 +24,25 @@ class Annosraakaaine extends BaseModel {
         $row = $querry->fetch();
     }
 
+
+
+    public function validate_maara() {
+        $errors = array();
+        if ($this->maara == '' || $this->maara == null) {
+            $errors[] = 'Nimi ei saa olla tyhjä!';
+        }
+        if (!is_numeric($this->maara) && $this->maara != null) {
+            $errors[] = 'Määrän täytyy olla luku!';
+        }
+
+
+
+        return $errors;
+    }
+
     public static function find($id) {
 
-        $query = DB::connection()->prepare('SELECT Raakaaine.nimi AS nimi, Annosraakaaine.maara AS maara FROM Raakaaine, Annosraakaaine WHERE Raakaaine.id = Annosraakaaine.raakaaine_id AND Annosraakaaine.annos_id = :id');
+        $query = DB::connection()->prepare('SELECT Raakaaine.nimi AS nimi, Annosraakaaine.maara AS maara, Raakaaine.id AS rid FROM Raakaaine, Annosraakaaine WHERE Raakaaine.id = Annosraakaaine.raakaaine_id AND Annosraakaaine.annos_id = :id');
         $query->execute(array('id' => $id));
 //        $row = $query->fetch();
 
@@ -37,7 +54,8 @@ class Annosraakaaine extends BaseModel {
 
             $raakaaineet[$index] = array(
                 'nimi' => $row['nimi'],
-                'maara' => $row['maara']
+                'maara' => $row['maara'],
+                'rid' => $row['rid']
             );
             $index++;
         }
@@ -69,7 +87,7 @@ class Annosraakaaine extends BaseModel {
         }
 
         $tiedot = array();
-        
+
         $annos = Annos::find($id);
 
         $id = $annos->id;
@@ -79,7 +97,7 @@ class Annosraakaaine extends BaseModel {
         $hiilihydraatit = 0;
         $rasva = 0;
 
-        
+
         foreach ($raakaaineet as $raakaaine) {
             $kcal = $kcal + $raakaaine['kcal'];
             $proteiini = $proteiini + $raakaaine['proteiini'];
@@ -96,8 +114,19 @@ class Annosraakaaine extends BaseModel {
         ];
 
         return $tiedot;
-        
-//        return $raakaaineet;
+    }
+
+    public function update() {
+        $querry = DB::connection()->prepare('UPDATE Annosraakaaine SET maara = :maara WHERE annos_id = :annos_id AND raakaaine_id = :raakaaine_id');
+
+        $querry->execute(array('annos_id' => $this->annos_id, 'raakaaine_id' => $this->raakaaine_id, 'maara' => $this->maara));
+
+        $row = $querry->fetch();
+    }
+
+    public function destroy($aid, $rid) {
+        $query = DB::connection()->prepare('DELETE from Annosraakaaine WHERE annos_id = :annos_id AND raakaaine_id = :raakaaine_id');
+        $query->execute(array('annos_id' => $aid, 'raakaaine_id' => $rid));
     }
 
 }

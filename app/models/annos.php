@@ -96,4 +96,5 @@ class Annos extends BaseModel {
         $query->execute(array('id' => $id));
     }
 
+    
 }

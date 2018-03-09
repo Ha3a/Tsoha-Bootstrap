@@ -14,6 +14,10 @@ class UserController extends BaseController {
         View::make('suunnitelmat/login.html');
     }
 
+    public static function createAccount() {
+        View::make('kayttaja/rekisterointi.html');
+    }
+
     public static function handle_login() {
         $params = $_POST;
 
@@ -31,6 +35,23 @@ class UserController extends BaseController {
     public static function logout() {
         $_SESSION['user'] = null;
         Redirect::to('/ravintokirja/raakaaine', array('message' => 'Olet kirjautunut ulos!'));
+    }
+
+    public static function store() {
+
+        $params = $_POST;
+
+        $attribuutit = array(
+            'nimi' => $params['nimi'],
+            'salasana' => $params['salasana'],
+            'admin' => 'false'
+        );
+
+        $kayttaja = new Kayttaja($attribuutit);
+
+        $kayttaja->save();
+
+        Redirect::to('/login', array('message' => 'Käyttäjä luotu!'));
     }
 
 }

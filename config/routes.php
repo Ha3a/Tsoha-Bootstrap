@@ -12,6 +12,15 @@ $routes->get('/login', function() {
     HelloWorldController::login();
 });
 
+$routes->get('/register', function() {
+    UserController::createAccount();
+});
+
+$routes->post('/register', function() {
+    UserController::store();
+});
+
+
 $routes->get('/ravintokirja/ruoka', function() {
     HelloWorldController::ruoka();
 });
@@ -89,6 +98,38 @@ $routes->post('/ravintokirja/annos/:id/destroy', function($id) {
 $routes->post('/ravintokirja/annos/:aid/lisaaraakaaine/:rid', function($aid, $rid) {
     AnnosController::lisaaAnnokseen($aid, $rid);
 });
+
+
+$routes->post('/ravintokirja/annos/:aid/update/:rid', function($aid, $rid) {
+    AnnosController::updateSisalto($aid, $rid);
+});
+
+
+$routes->post('/ravintokirja/annos/:aid/destroy/:rid', function($aid, $rid) {
+    AnnosController::destroyRaakaaine($aid, $rid);
+});
+
+
+
+
+
+$routes->get('/ravintokirja/ruokailut', function() {
+    RuokailutController::index();
+});
+
+
+$routes->post('/ravintokirja/ruokailut/:aid/eat', function($aid) {
+    RuokailutController::eat($aid);
+});
+
+//$routes->get('/ravintokirja/ruokailut/:aid/eat', function($aid) {
+//    RuokailutController::eat($aid);
+//});
+
+$routes->post('/ravintokirja/ruokailut/:aid/destroy', function($aid) {
+    RuokailutController::destroy($aid);
+});
+
 
 
 

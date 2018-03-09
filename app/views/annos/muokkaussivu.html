@@ -28,6 +28,59 @@
 </form>
 
 
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>Määrä grammoissa</th>
+            <th></th>
+            <th></th>
+        </tr>
+
+
+    </thead>
+
+    <tbody>
+    <h2>Muokkaa lisättyjä raaka-aineita</h2>
+
+    {% for raakaaine in annosraakaaineet %}
+
+
+    <tr>
+    <form method="post" action="{{base_path}}/ravintokirja/annos/{{annos.id}}/update/{{raakaaine.rid}}" style="display: inline-block;">
+            <td><a href="{{base_path}}/ravintokirja/raakaaine/{{raakaaine.rid}}">{{raakaaine.nimi}}</a></td>
+            <td>
+
+                <input type="text" name="maara" class="form-control" value={{raakaaine.maara}}>
+
+            </td>
+            <th>
+
+
+                <button type="submit" class="btn btn-primary">Muokkaa</button>
+        </form>
+
+    </th>
+
+    <th>
+        <form method="post" action="{{base_path}}/ravintokirja/annos/{{annos.id}}/destroy/{{raakaaine.rid}}" style="display: inline-block;">
+            <button type="submit" class="btn btn-danger">Poista</button>
+        </form>
+
+    </th>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+</table>
+
+
+
+
+
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -42,36 +95,37 @@
     </thead>
 
     <tbody>
+    <h2>Lisää raakaaine</h2>
+    {% for raakaaine in raakaaineet %}
 
-        {% for raakaaine in raakaaineet %}
+    <tr>
 
-        <tr>
-             <form method="post" action="{{base_path}}/ravintokirja/annos/{{annos.id}}/lisaaraakaaine/{{raakaaine.id}}" style="display: inline-block;">
-            <td><a href="{{base_path}}/ravintokirja/raakaaine/{{raakaaine.id}}">{{raakaaine.nimi}}</a></td>
-            <td>{{raakaaine.kcalper100}}</td>
-            <td>{{raakaaine.proteiiniper100}}</td>
-            <td>{{raakaaine.hiilihydraatitper100}}</td>
-            <td>{{raakaaine.rasvaper100}}</td>
-            <td>
+    <form method="post" action="{{base_path}}/ravintokirja/annos/{{annos.id}}/lisaaraakaaine/{{raakaaine.id}}" style="display: inline-block;">
+        <td><a href="{{base_path}}/ravintokirja/raakaaine/{{raakaaine.id}}">{{raakaaine.nimi}}</a></td>
+        <td>{{raakaaine.kcalper100}}</td>
+        <td>{{raakaaine.proteiiniper100}}</td>
+        <td>{{raakaaine.hiilihydraatitper100}}</td>
+        <td>{{raakaaine.rasvaper100}}</td>
+        <td>
 
-                <input type="text" name="maara" class="form-control" value={{annos.nimi}}>
+            <input type="text" name="maara" class="form-control" value=0>
 
-            </td>
-            <th>
-
-
-               
-                    <button type="submit" class="btn btn-primary">Lisää annokseen</button>
-                </form>
+        </td>
+        <th>
 
 
-            </th>
-        </tr>
-        
-        {% endfor %}
-        
 
-    </tbody>
+            <button type="submit" class="btn btn-primary">Lisää annokseen</button>
+    </form>
+
+
+</th>
+</tr>
+
+{% endfor %}
+
+
+</tbody>
 </table>
 
 
